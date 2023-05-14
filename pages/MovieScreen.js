@@ -1,11 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { View, Text, SafeAreaView, StatusBar, ScrollView, Button, FlatList } from 'react-native';
+import { View, Text, SafeAreaView, StatusBar, ScrollView, FlatList, TouchableOpacity } from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 
 
 const MovieScreen = () => {
     const [nowPlayings, setNowPlaying] = useState([])
+    const route = useRoute()
+    const navigation = useNavigation()
 
     const getAddress = (category) => {
         return `https://api.themoviedb.org/3/movie/${category}?api_key=5d4d4e77562195e36a88f72b8a56f436&language=en-US&page=1`
@@ -33,13 +36,17 @@ const MovieScreen = () => {
             <FlatList
                 data={nowPlayings}
                 renderItem={({item}) => (
-                    <View
-                        style={{
-                            height: "130px",
-                            margin: 10,
-                            background: "white",
-                            paddingHorizontal: 10
-                            
+                    <TouchableOpacity
+         
+                        onPress={() => navigation.navigate("Detail", {data: item.id})}
+                    >
+                         <View
+                             style={{
+                             height: "140px",
+                             margin: 10,
+                             background: "white",
+                             padding: 10
+                                
                         }}
                     >
                         <Text
@@ -52,9 +59,13 @@ const MovieScreen = () => {
                             {item.title}
                         </Text>
                         <Text>
-                            {item.overview}
+                            {item.overview.slice(0,200)}
                         </Text>
                     </View>
+
+
+                </TouchableOpacity>
+                    
                 )}
 
             

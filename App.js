@@ -6,16 +6,22 @@ import MovieScreen from './pages/MovieScreen';
 import TvScreen from './pages/TvScreen';
 import SearchScreen from './pages/SearchScreen';
 import ProfileScreen from './pages/ProfileScreen';
+import HomeStack from './stacks/HomeStack';
 
 const Tab = createBottomTabNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false
+        }}
+      >
         <Tab.Screen 
           name="Movie"
-          component={MovieScreen}
+          component={HomeStack}
+          // component={MovieScreen}
           options={{
             tabBarIcon: ({color, size}) => (
                 <Feather name="film" color={color} size={size - 4} />
