@@ -11,13 +11,24 @@ const MovieScreen = () => {
     const navigation = useNavigation()
 
     const getAddress = (category) => {
-        return `https://api.themoviedb.org/3/movie/${category}?api_key=5d4d4e77562195e36a88f72b8a56f436&language=en-US&page=1`
+        return `https://api.themoviedb.org/3/movie/${category}?language=en-US&page=1`
     }
 
     const getNowPlayingData = async () => {
         try {
+           
 
-            const result = await axios.get(getAddress("now_playing"))
+            const options = {
+                headers: {
+                    accept: 'application/json',
+                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZDRkNGU3NzU2MjE5NWUzNmE4OGY3MmI4YTU2ZjQzNiIsInN1YiI6IjY0NDQ4NWE3MDU4MjI0MDJmYjMyZjQ5YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.HiBKa57r3cJVfdbRcm9-gBXo0ToW2e_cWRGWqVx2i3M'
+
+                
+                }
+            }
+
+
+            const result = await axios.get(getAddress("now_playing"), options)
             console.log(result.data.results)
             setNowPlaying(result.data.results)
             
