@@ -7,6 +7,7 @@ import TvScreen from './pages/TvScreen';
 import SearchScreen from './pages/SearchScreen';
 import ProfileScreen from './pages/ProfileScreen';
 import HomeStack from './stacks/HomeStack';
+import TvStack from './stacks/TvStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -30,7 +31,7 @@ const App = () => {
         />
         <Tab.Screen 
           name="Tv"
-          component={TvScreen}
+          component={TvStack}
           options={{
             tabBarIcon: ({color, size}) => (
                 <Feather name="tv"  color={color} size={size - 4} />
